@@ -1,15 +1,19 @@
 package org.upgrade.exception;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.text.ParseException;
 
 public class ExceptionExample {
     public static void main(String[] args) {
 
         Child child = new Child();
 
-
+        try {
+            test1();
+        } catch (Exception e) {
+            System.out.println("kkkkkkkkk");
+          e.printStackTrace();
+        }
         child.test();
         try {
             child.test1();
@@ -17,6 +21,17 @@ public class ExceptionExample {
             e.printStackTrace();
         }
 
+
+    }
+    public static void test1()throws Exception{
+        try {
+            throw new Exception();
+        }catch (Exception e){
+            System.out.println("llllllllll");
+            throw new Exception();
+        }finally {
+            System.out.println("ppppppppppp");
+        }
     }
 }
 
@@ -36,6 +51,9 @@ class Base {
             }
 
         }
+
+    }
+    public void t2(){
 
     }
 
@@ -58,7 +76,33 @@ class Child extends Base {
         throw new NullPointerException();
 
     }
+
+    @Override
+    public void t2() {
+        super.t2();
+    }
+
     public void test1()throws IOException{
         throw  new IOException();
+    }
+    class Parent {
+        void doSomething() throws IOException, ParseException {
+            // ...
+        }
+
+        void doSomethingElse() throws IOException {
+            // ...
+        }
+    }
+
+    class Child1 extends Parent {
+        void doSomething() throws IOException {
+            // ...
+        }
+
+
+        void doSomethingElse() throws FileNotFoundException, EOFException {
+            // ...
+        }
     }
 }
